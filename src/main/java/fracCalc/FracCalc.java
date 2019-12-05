@@ -180,13 +180,13 @@ public class FracCalc {
 		else  {
 			if ((indexnegative1 != -1 && indexnegative2 == -1) || (indexnegative1 == -1 && indexnegative2 != -1) ) {
 			numerator = Math.abs((whole1*denominator3+numerator3) * denominator4);
-			denominator = denominator3 * (whole2*denominator4+numerator4);
+			denominator =Math.abs( denominator3 * (whole2*denominator4+numerator4));
 			whole = -1 * Math.abs(numerator/denominator);
-			numerator = numerator % denominator;
+			numerator = Math.abs(numerator % denominator);
 			}
 			else {
-				numerator = Math.abs((whole1*denominator3+numerator3) * denominator4);
-				denominator = Math.abs(denominator3 * (whole2*denominator4+numerator4));
+				numerator = Math.abs((Math.abs(whole1*denominator3)+numerator3) * denominator4);
+				denominator = Math.abs(denominator3 * (Math.abs(whole2*denominator4)+numerator4));
 				whole = numerator/denominator;
 				numerator = numerator % denominator;
 			}
