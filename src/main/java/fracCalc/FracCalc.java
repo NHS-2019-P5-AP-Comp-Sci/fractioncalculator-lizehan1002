@@ -54,31 +54,31 @@ public class FracCalc {
 		String numerator2 = "";
 		String denominator2 = "";
 
-		if (index1 == -1 && index2 == -1) {
+		if (index1 == -1 && index2 == -1) { // check if there is the numerator or the whole of the first input
 			wholenumber1 = value1.substring(0);
 			numerator1 = "0";
 			denominator1 = "1";
 		}
 
-		else if (index1 == -1 && index2 != -1) {
+		else if (index1 == -1 && index2 != -1) { // check if there is the numerator or the whole of the first input
 			wholenumber1 = "0";
 			numerator1 = value1.substring(0, index2);
 			denominator1 = value1.substring(index2 + 1);
 		}
 
-		else {
+		else { // check if there is the numerator or the whole of the first input
 			wholenumber1 = value1.substring(0, index1);
 			numerator1 = value1.substring(index1 + 1, index2);
 			denominator1 = value1.substring(index2 + 1);
 		}
 
-		if (index3 == -1 && index4 == -1) {
+		if (index3 == -1 && index4 == -1) { // check if there is the numerator or the whole number of the second input
 			wholenumber2 = value2.substring(0);
 			numerator2 = "0";
 			denominator2 = "1";
 		}
 
-		else if (index3 == -1 && index4 != -1) {
+		else if (index3 == -1 && index4 != -1) { // check if there is numerator or whole number of second input
 			wholenumber2 = "0";
 			numerator2 = value2.substring(0, index4);
 			denominator2 = value2.substring(index4 + 1);
@@ -87,6 +87,7 @@ public class FracCalc {
 			numerator2 = value2.substring(index3 + 1, index4);
 			denominator2 = value2.substring(index4 + 1);
 		}
+
 		int whole1 = Integer.parseInt(wholenumber1);
 		int whole2 = Integer.parseInt(wholenumber2);
 		int numerator3 = Integer.parseInt(numerator1);
@@ -99,20 +100,20 @@ public class FracCalc {
 		int gcd = 0;
 		String fin = "";
 
-		if (operator.equals("+")) {
-			if (denominator3 == denominator4) {
+		if (operator.equals("+")) { // if this is a addiction
+			if (denominator3 == denominator4) { // if they have common denominator
 				denominator = denominator3;
 				whole = whole1 + whole2;
-				if (whole1 == 0 && whole2 == 0) {
-					if (indexnegative1 == -1 && indexnegative2 != -1) {
+				if (whole1 == 0 && whole2 == 0) { // there is no whole number for both
+					if (indexnegative1 == -1 && indexnegative2 != -1) { // check the positive and negative of the inputs
 						numerator = numerator3 + numerator4;
 					} else if (indexnegative1 != -1 && indexnegative2 == -1) {
 						numerator = numerator3 + numerator4;
 					} else {
 						numerator = numerator3 + numerator4;
 					}
-				} else {
-					if (indexnegative1 == -1 && indexnegative2 != -1) {
+				} else { // if there is a whole number of either one
+					if (indexnegative1 == -1 && indexnegative2 != -1) { // check the positive and negative of the inputs
 						numerator = Math.abs(numerator3 + -1 * numerator4);
 					} else if (indexnegative1 != -1 && indexnegative2 == -1) {
 						numerator = Math.abs(-1 * numerator3 + numerator4);
@@ -120,10 +121,10 @@ public class FracCalc {
 						numerator = Math.abs(numerator3 + numerator4);
 					}
 				}
-			} else if (denominator3 != denominator4) {
+			} else if (denominator3 != denominator4) { // if they have different denominator
 				denominator = denominator3 * denominator4;
 
-				if (indexnegative1 == -1 && indexnegative2 != -1) {
+				if (indexnegative1 == -1 && indexnegative2 != -1) { // check the positive and negative of the inputs
 					numerator = Math.abs(numerator3 * denominator4 + (-1) * numerator4 * denominator3);
 				} else if (indexnegative1 != -1 && indexnegative2 == -1) {
 					numerator = Math.abs(-1 * numerator3 * denominator4 + numerator4 * denominator3);
@@ -134,35 +135,39 @@ public class FracCalc {
 			}
 		}
 
-		else if (operator.equals("-")) {
+		else if (operator.equals("-")) { // if this is subtraction
 			whole = 0;
-			if (denominator3 == denominator4) {
+			if (denominator3 == denominator4) { // if they have common denominator
 				denominator = denominator3;
-				if (indexnegative1 == -1 && indexnegative2 != -1) {
+				if (indexnegative1 == -1 && indexnegative2 != -1) { // check the positive and negative of the inputs
 					numerator = (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3))
 							- -1 * (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4));
-				} else if (indexnegative1 != -1 && indexnegative2 == -1) {
+				} else if (indexnegative1 != -1 && indexnegative2 == -1) { // check the positive and negative of the
+																			// inputs
 					numerator = -1 * (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3))
 							- (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4));
-				} else if (indexnegative1 != -1 && indexnegative2 != -1) {
+				} else if (indexnegative1 != -1 && indexnegative2 != -1) { // check the positive and negative of the
+																			// inputs
 					numerator = -1 * (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3))
 							- -1 * (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4));
-				} else {
+				} else { // check the positive and negative of the inputs
 					numerator = (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3))
 							- (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4));
 				}
-			} else if (denominator3 != denominator4) {
+			} else if (denominator3 != denominator4) { // if they have different denominator
 				denominator = denominator3 * denominator4;
-				if (indexnegative1 == -1 && indexnegative2 != -1) {
+				if (indexnegative1 == -1 && indexnegative2 != -1) { // check the positive and negative of the inputs
 					numerator = (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3)) * denominator4
 							- -1 * (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4)) * denominator3;
-				} else if (indexnegative1 != -1 && indexnegative2 == -1) {
+				} else if (indexnegative1 != -1 && indexnegative2 == -1) { // check the positive and negative of the
+																			// inputs
 					numerator = -1 * (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3)) * denominator4
 							- (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4)) * denominator3;
-				} else if (indexnegative1 != -1 && indexnegative2 != -1) {
+				} else if (indexnegative1 != -1 && indexnegative2 != -1) {// check the positive and negative of the
+																			// inputs
 					numerator = -1 * (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3)) * denominator4
 							- -1 * (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4)) * denominator3;
-				} else {
+				} else { // check the positive and negative of the inputs
 					numerator = (Math.abs(denominator3) * Math.abs(whole1) + Math.abs(numerator3)) * denominator4
 							- (Math.abs(denominator4) * Math.abs(whole2) + Math.abs(numerator4)) * denominator3;
 				}
@@ -170,14 +175,14 @@ public class FracCalc {
 
 		}
 
-		else if (operator.equals("*")) {
-			if ((indexnegative1 != -1 && indexnegative2 == -1) || (indexnegative1 == -1 && indexnegative2 != -1)) {
+		else if (operator.equals("*")) { // if there is a multiplication
+			if ((indexnegative1 != -1 && indexnegative2 == -1) || (indexnegative1 == -1 && indexnegative2 != -1)) {// checksigns
 				numerator = (Math.abs(whole1 * denominator3) + (numerator3))
 						* (Math.abs(whole2 * denominator4) + (numerator4));
 				denominator = denominator3 * denominator4;
 				whole = Math.abs(numerator / denominator) * -1;
 				numerator = numerator % denominator;
-			} else {
+			} else { //// if two number have same signs
 				numerator = (Math.abs(whole1 * denominator3) + (numerator3))
 						* (Math.abs(whole2 * denominator4) + (numerator4));
 				denominator = denominator3 * denominator4;
@@ -186,17 +191,17 @@ public class FracCalc {
 			}
 		}
 
-		else {
-			if ((indexnegative1 != -1 && indexnegative2 == -1) || (indexnegative1 == -1 && indexnegative2 != -1)) {
+		else { // if there is a division
+			if ((indexnegative1 != -1 && indexnegative2 == -1) || (indexnegative1 == -1 && indexnegative2 != -1)) { // checksigns
 				numerator = Math.abs((Math.abs(whole1 * denominator3) + numerator3) * denominator4);
 				denominator = Math.abs(denominator3 * (Math.abs(whole2 * denominator4) + numerator4));
 				whole = -1 * Math.abs(numerator / denominator);
-				if (whole != 0) {
+				if (whole != 0) { // if the whole number is not zero
 					numerator = Math.abs(numerator % denominator);
-				} else {
+				} else { // if the whole number is zero
 					numerator = -1 * Math.abs(numerator % denominator);
 				}
-			} else {
+			} else { //// if two number have same signs
 				numerator = Math.abs((Math.abs(whole1 * denominator3) + numerator3) * denominator4);
 				denominator = Math.abs(denominator3 * (Math.abs(whole2 * denominator4) + numerator4));
 				whole = numerator / denominator;
@@ -204,13 +209,15 @@ public class FracCalc {
 			}
 		}
 
-		if (numerator == 0 && whole == 0) {
+		if (numerator == 0 && whole == 0) { // What happened if there appears zero
 			fin = "0";
-		} else if (numerator == 0 && whole != 0) {
+		} else if (numerator == 0 && whole != 0) { // what happened if there is only whole number
 			fin = whole + "";
-		} else {
+		} else { // general situation
 
-			for (int i = 1; i <= Math.abs(numerator) && i <= Math.abs(denominator); i++) {
+			for (int i = 1; i <= Math.abs(numerator) && i <= Math.abs(denominator); i++) { // method finding the
+																							// greatest common
+																							// denominator
 				if (numerator % i == 0 && denominator % i == 0)
 					gcd = i;
 			}
@@ -218,28 +225,28 @@ public class FracCalc {
 			numerator = numerator / gcd;
 			denominator = denominator / gcd;
 
-			if (Math.abs(numerator) > denominator && denominator != 1) {
-				if (whole >= 0) {
+			if (Math.abs(numerator) > denominator && denominator != 1) { // simplification
+				if (whole >= 0) { // check the simplification
 					whole = whole + numerator / denominator;
-				} else {
+				} else { // check the simplification
 					whole = whole - numerator / denominator;
 				}
 				numerator = Math.abs(numerator % denominator);
 				denominator = denominator;
 				fin = whole + "_" + numerator + "/" + denominator;
-			} else if (denominator == 1 && numerator != 0) {
+			} else if (denominator == 1 && numerator != 0) { // simplification
 				numerator = numerator / denominator;
-				if (whole >= 0) {
+				if (whole >= 0) { // simplification
 					whole = whole + numerator;
-				} else {
+				} else { // simplification
 					whole = whole - numerator;
 				}
 				fin = whole + "";
 			}
 
-			else if (numerator < denominator && whole == 0 && numerator != 0) {
+			else if (numerator < denominator && whole == 0 && numerator != 0) { // simplification
 				fin = numerator + "/" + denominator;
-			} else if (numerator < denominator && whole != 0) {
+			} else if (numerator < denominator && whole != 0) { // simplification
 				fin = whole + "_" + numerator + "/" + denominator;
 			}
 		}
@@ -248,7 +255,7 @@ public class FracCalc {
 		return fin;
 	}
 
-// TODO: Fill in the space below with any helper methods that you think you will
-// need
+	// TODO: Fill in the space below with any helper methods that you think you will
+	// need
 
 }
